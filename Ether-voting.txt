@@ -1,0 +1,116 @@
+/*  
+    Project: "Ether-UB-Voting"
+      * Description: Simple Smart Contract for an Election
+      
+      * Authors: Sereysathia Luy
+      * Advisor: Omar Abuzaghleh
+*/
+pragma solidity ^0.4.11;
+
+contract Election{
+//----------------- Attributes ----------------- //
+    address public owner;   // owner of this contract
+    string public electionName; // name of this election
+    string public location;     // location of this election
+    uint public totalVotes;     // total votes of this election
+//----------------- Attributes ----------------- //
+    
+//----------------- Candidate ----------------- //
+    struct Candidate {
+        string firstName;
+        string lastName;
+        string gender;
+        string date_of_birth;
+        string party;
+        uint voteCount;
+    }
+    // array of candidates
+    Candidate [] public candidates; 
+    
+    // two default candidates in this election
+    Candidate candidate1 = Candidate('Biff', 'Tannen', 'male', '01/02/1955','Republican', 0);
+    Candidate candidate2 = Candidate('Thomas', 'Whitmore','male', '07/04/1970','Democratic', 0);
+//----------------- Candidate ----------------- //
+
+//------------------- Voter ------------------- //
+    struct Voter {
+        bool authorized;
+        bool voted;
+        uint vote;
+    }
+    // Store accounts that have voted
+    mapping( address => Voter ) public voters;
+//------------------- Voter ------------------- //
+
+
+//----------------- Functions ----------------- //
+    // Election constructor 
+    constructor () public {
+        owner = msg.sender;
+        candidates.push(candidate1);
+        candidates.push(candidate2);
+    }
+    
+    // modifier that only allows the owner to make changes
+    modifier ownerOnly(){
+        require(msg.sender == owner);  
+        _; 
+    }
+    
+    // function to set the Election name
+    function set_ElectionName_Location(string _name, string _location) ownerOnly public {
+        electionName = _name;
+        location = _location;
+    }
+    
+    // function to add a candidate to the election
+    function add_Candidate(string _firstName, string _lastName, string _gender, string _dob, string _party) ownerOnly public {
+        candidates.push(Candidate(_firstName, _lastName,_gender, _dob, _party, 0));
+    }
+    
+    // function to authorize a voter
+    function authorize_Voter(address _voter) ownerOnly public {
+        voters[_voter].authorized = true;
+    }
+    
+    // function to vote
+    function add_Vote(address _voter, uint _voteIndex) public {
+        // check if voter has voted yet
+        require(!voters[_voter].voted);
+        // check if voter is authorized
+        require(voters[_voter].authorized);
+        
+        voters[_voter].vote = _voteIndex;  
+        voters[_voter].voted = true;
+        
+        candidates[_voteIndex].voteCount += 1;
+        totalVotes += 1;
+    }
+    
+    // function to find the winning candidate index
+     function winningCandidate() private view returns (uint _winningCandidate) {
+        uint winningVoteCount = 0;
+        for (uint i = 0; i < candidates.length; i++) {
+            if (candidates[i].voteCount > winningVoteCount) {
+                winningVoteCount = candidates[i].voteCount;
+                _winningCandidate = i;
+            }
+        }
+    }
+    
+    // function to return the winner's details
+    function winnerName() public view
+            returns (string _firstName, string _lastName, string _gender, string _dob, string _party, uint _votes, uint _totalVotes) {
+        _firstName = candidates[winningCandidate()].firstName;
+        _lastName = candidates[winningCandidate()].lastName;
+        _gender = candidates[winningCandidate()].gender;
+        _dob = candidates[winningCandidate()].date_of_birth;
+        _party = candidates[winningCandidate()].party;
+        _votes = candidates[winningCandidate()].voteCount;
+        _totalVotes = totalVotes;
+    }
+    
+    
+//----------------- Functions ----------------- //
+    
+}
