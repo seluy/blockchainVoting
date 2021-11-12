@@ -1,0 +1,91 @@
+# when adding these to POSTMAN - do not forget to add 'candidate':  '(A or B)'
+
+{'Firstname': 'Jules',
+'Lastname': 'Winnfield',
+'date of birth': '05/08/1980',
+'gender': 'male',
+'voterID': 'QT1994ZBM2'
+},
+
+
+{'Firstname': 'Ellen',
+'Lastname': 'Ripley',
+'date of birth': '02/15/1970',
+'gender': 'female',
+'voterID': 'A1975ZNOMP'
+},
+
+{'Firstname': 'Walter',
+Lastname': 'White',
+'date of birth': '01/08/1975',
+'gender': 'male',
+'voterID': 'BB10208DBZ'
+},
+
+
+{'Firstname': 'Selena',
+'Lastname': 'Kyles',
+'date of birth': '02/14/1985',
+'gender': 'female',
+'voterID': '1940DCTY4Z'
+},
+
+
+{'Firstname': 'Alyx',
+'Lastname': 'Vance',
+'date of birth': '09/09/1997',
+'gender': 'female',
+'voterID': 'HL3C2020E3'
+},
+
+
+{'Firstname': 'Homer',
+'Lastname': 'Simpson',
+'date of birth': '12/01/1980',
+'gender': 'male',
+'voterID': '22TSSPDT45'
+},
+
+
+{'Firstname': 'Monica',
+'Lastname': 'Geller',
+'date of birth': '01/01/1995',
+'gender': 'female',
+'voterID': 'FR47IZCC50'
+},
+
+
+{'Firstname': 'Donna',
+'Lastname': 'Sheridan',
+'date of birth': '04/04/1992',
+'gender': 'female',
+'voterID': 'SOW22TGOAL'
+},
+
+{'Firstname': 'Charlie',
+'Lastname': 'Simms',
+'date of birth': '05/05/1994',
+'gender': 'male',
+'voterID': 'D9219AL36'
+},
+
+{'Firstname': 'Bruce',
+'Lastname': 'Wayne',
+'date of birth': '09/08/1984',
+'gender': 'male',
+'voterID': 'DC1939T4UE'
+},
+       
+{'Firstname': 'Laura',
+'Lastname': 'Croft',
+'date of birth': '05/04/1990',
+'gender': 'female',
+'voterID': 'VG90SPSXBO'
+},
+
+{'Firstname': 'Peter',
+'Lastname': 'Parker',
+'date of birth': '04/05/1998',
+'gender': 'male',
+'voterID': 'MC1962RT0S'
+}
